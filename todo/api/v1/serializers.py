@@ -73,8 +73,9 @@ from ...models import Task
 #     id = serializers.IntegerField()
 #     task_name = serializers.CharField(max_length=200)
 
+
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         # fields = '__all__'
-        fields = ['id','task_name','completed','created_at','user']
+        fields = ["id", "task_name", "completed", "created_at", "user"]

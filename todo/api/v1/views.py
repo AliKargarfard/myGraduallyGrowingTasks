@@ -42,11 +42,20 @@ class TaskModelViewSet(viewsets.ModelViewSet):
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated, IsAdminUser, IsAuthenticatedOrReadOnly
+from rest_framework.permissions import (
+    IsAuthenticated,
+    IsAdminUser,
+    IsAuthenticatedOrReadOnly,
+)
 from .serializers import TaskSerializer
 from ...models import Task
 from rest_framework import status
-from rest_framework.generics import GenericAPIView, ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import (
+    GenericAPIView,
+    ListAPIView,
+    ListCreateAPIView,
+    RetrieveUpdateDestroyAPIView,
+)
 from rest_framework import mixins
 from django.shortcuts import get_object_or_404
 
@@ -96,7 +105,6 @@ def taskDetail(request, id):
 """
 
 
-
 """class TaskList(APIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
     
@@ -139,10 +147,11 @@ class TaskDetail(APIView):
 
 class TaskList(ListCreateAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
-    serializer_class = TaskSerializer    
+    serializer_class = TaskSerializer
     queryset = Task.objects.all()
+
 
 class TaskDetail(RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
-    serializer_class = TaskSerializer    
+    serializer_class = TaskSerializer
     queryset = Task.objects.all()
