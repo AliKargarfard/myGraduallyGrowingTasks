@@ -17,7 +17,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth import get_user_model
 
-# from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model
 # from django.core.mail import send_mail
 # from mail_templated import send_mail
 from mail_templated import EmailMessage
@@ -27,7 +27,7 @@ import jwt
 from jwt.exceptions import ExpiredSignatureError, InvalidSignatureError
 from django.conf import settings
 
-# User=get_user_model
+User=get_user_model
 
 
 class RegistrationApiView(generics.GenericAPIView):

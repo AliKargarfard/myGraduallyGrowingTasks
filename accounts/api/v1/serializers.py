@@ -6,7 +6,9 @@ from django.core import exceptions
 from django.contrib.auth import authenticate
 from django.utils.translation import gettext_lazy as _
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+# from django.contrib.auth import get_user_model
 
+# User = get_user_model
 
 class RegistrationSerializer(serializers.ModelSerializer):
     password1 = serializers.CharField(max_length=250, write_only=True)
@@ -78,7 +80,7 @@ class CustomAuthTokenSerializer(serializers.Serializer):
         else:
             msg = _('Must include "username" and "password".')
             raise serializers.ValidationError(msg, code="authorization")
-        print(".........................")
+        print(user,".........................")
         attrs["user"] = user
         return attrs
 
