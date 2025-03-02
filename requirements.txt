@@ -1,9 +1,15 @@
+# general modules
 django==4.2
 black
 flake8
 python-decouple
 pillow
 djangorestframework
+
+# third party modules
 markdown       
 django-filter  
 django-coreapi
+drf-yasg[validation]
+
+# development modules
