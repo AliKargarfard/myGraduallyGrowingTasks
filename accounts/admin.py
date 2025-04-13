@@ -101,35 +101,18 @@ class UserAdmin(BaseUserAdmin):
         ),
     ]
     fieldsets = [
-        (
-            "Authentication",
-            {
+        ("Authentication",{
                 "fields": ["email", "password"],
-            },
-        ),
-        (
-            "Permissions",
-            {
-                "fields": [
-                    "is_staff",
-                    "is_superuser",
-                    "is_active",
-                    "is_verified",
-                ],
-            },
-        ),
-        (
-            "Group Permissions",
-            {
-                "fields": ["groups", "user_permissions"],
-            },
-        ),
-        (
-            "Important dates",
-            {
+        }),
+        ("Permissions",{
+                "fields": ["is_staff","is_superuser","is_active","is_verified"],
+        }),
+        ('Group Permissions',{
+                "fields": ('groups', 'user_permissions'),
+        }),
+        ("Important dates",{
                 "fields": ["last_login"],
-            },
-        ),
+        }),
     ]
     search_fields = ["email"]
     ordering = ["email"]

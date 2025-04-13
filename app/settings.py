@@ -63,6 +63,11 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 4,
 }
 
+# SIMPLE_JWT = {
+#   # It will work instead of the default serializer(TokenObtainPairSerializer).
+#   "TOKEN_OBTAIN_SERIALIZER": "accounts.api.v1.serializers.CustomTokenOptainPairSerializer",
+#   # ...
+# }
 
 ROOT_URLCONF = "app.urls"
 

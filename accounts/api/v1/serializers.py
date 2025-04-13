@@ -86,14 +86,38 @@ class CustomAuthTokenSerializer(serializers.Serializer):
 
 
 class CustomTokenOptainPairSerializer(TokenObtainPairSerializer):
-    def validate(self, attrs):
-        validated_data = super().validate(attrs)
-        if not self.user.is_verified:
-            raise serializers.ValidationError({"details": "user is not verified"})
-        validated_data["email"] = self.user.email
-        validated_data["user_id"] = self.user.id
-        return validated_data
+    # def validate(self, attrs):
+    #     validated_data = super().validate(attrs)
+    #     if not self.user.is_verified:
+    #         raise serializers.ValidationError({"details": "user is not verified"})
+    #     validated_data["email"] = self.user.email
+    #     validated_data["user_id"] = self.user.id
+    #     return validated_data
 
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+
+        # Add custom claims
+        token['email'] = user.email
+        token['user_id'] = user.id
+        # ...
+
+        return token
+
+    def validate(self, attrs):
+        data = super().validate(attrs)  # دریافت توکن‌های اصلی (access و refresh)
+        # refresh = self.get_token(self.user)  # ساخت توکن با فیلدهای سفارشی
+        # data['refresh'] = str(refresh)
+        # data['access'] = str(refresh.access_token)
+        
+        # اضافه کردن اطلاعات کاربر به پاسخ
+        data['user_id'] = self.user.id
+        data['email'] = self.user.email
+        # data['username'] = self.user.username
+        # data['first_name'] = self.user.first_name
+        # data['last_name'] = self.user.last_name
+        return data
 
 class ChangePasswordSerializer(serializers.Serializer):
     old_password = serializers.CharField(required=True)

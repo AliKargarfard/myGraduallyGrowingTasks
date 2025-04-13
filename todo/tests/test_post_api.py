@@ -35,15 +35,20 @@ class TestTaskApi:
         response = api_client.post(url, data)
         assert response.status_code == 403
 
-    def test_create_Task_response_201_status(self, api_client, common_user):
-        url = reverse("todo:api-v1:task_list")
+    def test_create_task_response_201_status(self, api_client, common_user):
+        url = reverse("todo:create_task")
         data = {
-            "task_name": "test",
-            "completed": True,
+            "task_name": "First",
+            "completed": False,
         }
         user = common_user
+        print(user)
+        assert user.is_authenticated  # True
+        assert user.is_verified  # True
         api_client.force_authenticate(user=user)
-        response = api_client.post(url, data)
+        response = api_client.post(url, data, format="json")
+        print(response.status_code)  # 302
+        print(response.url)  # URL ریدایرکت شده        
         assert response.status_code == 201
 
     def test_create_Task_invalid_data_response_400_status(

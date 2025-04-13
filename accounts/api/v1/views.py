@@ -79,8 +79,8 @@ class CustomDeleteAuthToken(APIView):
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):
-    serializer_class = CustomAuthTokenSerializer
-
+    serializer_class = CustomTokenOptainPairSerializer
+    
 
 class ChangePasswordView(generics.GenericAPIView):
     model = User

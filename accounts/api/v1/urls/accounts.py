@@ -31,5 +31,5 @@ urlpatterns = [
     # Login JWT
     path("jwt/create/", views.CustomTokenObtainPairView.as_view(), name="jwt-create"),
     path("jwt/refresh/", TokenRefreshView.as_view(), name="jwt_refresh"),
-    path("jwt/verify/", TokenRefreshView.as_view(), name="jwt_verify"),
+    path("jwt/verify/", TokenVerifyView.as_view(), name="jwt_verify"),
 ]
