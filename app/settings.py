@@ -39,8 +39,18 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "accounts",
     "todo",
+<<<<<<< Updated upstream
     'rest_framework',
     'django_filters',    
+=======
+    "rest_framework",
+    "rest_framework.authtoken",
+    "rest_framework_simplejwt",
+    "drf_spectacular",
+    "django_filters",
+    "drf_yasg",
+    "mail_templated",
+>>>>>>> Stashed changes
 ]
 
 MIDDLEWARE = [
@@ -53,11 +63,20 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+<<<<<<< Updated upstream
 REST_FRAMEWORK = { 
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 4
     }
+=======
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    "PAGE_SIZE": 4,
+}
+>>>>>>> Stashed changes
 
 
 ROOT_URLCONF = "app.urls"
