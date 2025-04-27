@@ -7,3 +7,19 @@ djangorestframework
 markdown       
 django-filter  
 django-coreapi
+django-coreapi
+drf-yasg[validation]
+djangorestframework-simplejwt
+djoser
+drf_spectacular
+
+# development modules
+
+# Email third party modules
+django-mail-templated
+
+# refactoring and test
+black
+flake8
+pytest
+pytest-django
