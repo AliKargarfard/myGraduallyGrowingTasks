@@ -1,9 +1,12 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 # Create your models here.
 
-''' Task model for creating new tasks for the current user '''
+User = get_user_model()
+
+""" Task model for creating new tasks for the current user """
+
 class Task(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     task_name = models.CharField(max_length=150)
