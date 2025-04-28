@@ -12,6 +12,12 @@ django-coreapi
 drf-yasg[validation]
 djangorestframework-simplejwt
 djoser
+django-coreapi
+drf-yasg[validation]
+djangorestframework-simplejwt
+djoser
+drf_spectacular
+
 
 # development modules
 
@@ -23,3 +29,4 @@ black
 flake8
 pytest
 pytest-django
+
