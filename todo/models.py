@@ -13,6 +13,7 @@ class Task(models.Model):
     completed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    published_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         order_with_respect_to = "user"

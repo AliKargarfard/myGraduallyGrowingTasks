@@ -1,6 +1,23 @@
 from rest_framework import generics, status
+
+from rest_framework.response import Response
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.authtoken.models import Token
+from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.views import TokenObtainPairView
+
+from rest_framework_simplejwt.tokens import RefreshToken
+from mail_templated import EmailMessage
+import jwt
+from jwt.exceptions import ExpiredSignatureError, InvalidSignatureError
+from django.conf import settings
+from django.contrib.auth import get_user_model
+from django.shortcuts import get_object_or_404
+
 from ...models import User, Profile
 from django.shortcuts import get_object_or_404
+
 from .serializers import (
     RegistrationSerializer,
     CustomAuthTokenSerializer,
@@ -9,6 +26,17 @@ from .serializers import (
     ProfileSerializer,
     ActivationResendSerializer,
 )
+
+# from django.core.mail import send_mail
+# from mail_templated import send_mail
+from .utils import EmailThread
+from ...models import User, Profile
+
+User=get_user_model()
+
+
+class RegistrationApiView(generics.GenericAPIView):
+
 from rest_framework.response import Response
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
@@ -31,6 +59,7 @@ User=get_user_model
 
 
 class RegisterApiView(generics.GenericAPIView):
+
     serializer_class = RegistrationSerializer
 
     def post(self, request, *args, **kwargs):
@@ -41,6 +70,7 @@ class RegisterApiView(generics.GenericAPIView):
             data = {"email": email}
             user_obj = get_object_or_404(User, email=email)
             token = self.get_tokens_for_user(user_obj)
+
             # sending email using threading
             email_obj = EmailMessage(
                 "email/activation_email.tpl",
