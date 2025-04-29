@@ -17,4 +17,4 @@ jobs:
     - name: Launch Docker Compose 
       run: docker-compose up -d
     - name: flake and test execution
-      run: docker-compose exec todobackend sh -c "flake8 && pytest ."
+      run: docker exec todobackend sh -c "flake8 && pytest ."
