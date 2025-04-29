@@ -15,6 +15,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Launch Docker Compose 
-      run: docker-compose up
+      run: docker-compose up -d
     - name: flake and test execution
       run: docker-compose exec todobackend sh -c "flake8 && pytest ."
