@@ -48,8 +48,8 @@ class TestTaskApi:
 
         api_client.force_authenticate(user=user)
         response = api_client.post(url, data, format="json")
-        print(response.__dict__,'\n***************\n',api_client.__dict__)
-       
+        print(response.__dict__, "\n***************\n", api_client.__dict__)
+
         assert response.status_code == 201
 
     def test_create_Task_invalid_data_response_400_status(

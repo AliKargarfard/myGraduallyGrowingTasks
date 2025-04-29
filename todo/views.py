@@ -15,7 +15,7 @@ class ListTask(LoginRequiredMixin, ListView):
     template_name = "todo/list_tasks.html"
 
     def get_queryset(self):
-        print(self.request.__dict__,'****************')
+        print(self.request.__dict__, "****************")
         return self.model.objects.filter(user=self.request.user)
 
 
