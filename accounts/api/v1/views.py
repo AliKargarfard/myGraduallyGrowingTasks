@@ -14,7 +14,7 @@ from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 
 from ...models import Profile
-from .serializers import(
+from .serializers import (
     RegistrationSerializer,
     CustomAuthTokenSerializer,
     CustomTokenOptainPairSerializer,
@@ -80,7 +80,7 @@ class CustomDeleteAuthToken(APIView):
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenOptainPairSerializer
-    
+
 
 class ChangePasswordView(generics.GenericAPIView):
     model = User

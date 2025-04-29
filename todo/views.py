@@ -8,18 +8,20 @@ from django.views import View
 from .models import Task
 from django.urls import reverse_lazy
 
+
 class ListTask(LoginRequiredMixin, ListView):
     model = Task
     context_object_name = "tasks"
     template_name = "todo/list_tasks.html"
 
     def get_queryset(self):
-        print(self.request.__dict__,'****************')
+        print(self.request.__dict__, "****************")
         return self.model.objects.filter(user=self.request.user)
-    
+
+
 class TaskDetailView(DetailView):
     model = Task
-    template_name = "todo/task_details.html"      
+    template_name = "todo/task_details.html"
 
 
 class CreateTask(LoginRequiredMixin, CreateView):
@@ -40,7 +42,9 @@ class UpdateTask(LoginRequiredMixin, UpdateView):
     template_name = "todo/update_task.html"
 
 
-''' Mark a task as a Completed task '''    
+""" Mark a task as a Completed task """
+
+
 class CompletedTask(LoginRequiredMixin, View):
     model = Task
     success_url = reverse_lazy("todo:list_tasks")
@@ -52,7 +56,9 @@ class CompletedTask(LoginRequiredMixin, View):
         return redirect(self.success_url)
 
 
-''' Undo the completed task '''
+""" Undo the completed task """
+
+
 class UnCompletedTask(LoginRequiredMixin, View):
     model = Task
     success_url = reverse_lazy("todo:list_tasks")
@@ -62,7 +68,7 @@ class UnCompletedTask(LoginRequiredMixin, View):
         object.completed = False
         object.save()
         return redirect(self.success_url)
-    
+
 
 class DeleteTaskView(LoginRequiredMixin, DeleteView):
     model = Task
