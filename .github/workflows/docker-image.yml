@@ -1,0 +1,30 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Docker
+      uses: docker/setup-qemu-action@v3  # اختیاری (برای پلتفرم‌های مختلف)
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3  # اختیاری (برای BuildKit)
+
+    - name: Install Docker Compose
+      run: sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
+          docker-compose --version  # برای تست نصب    
+    - name: Launch Docker Compose 
+      run: docker compose up --build -d
+    - name: flake and test execution
+      run: docker exec todobackend sh -c "flake8 && pytest ."

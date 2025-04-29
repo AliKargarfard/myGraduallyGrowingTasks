@@ -1,6 +1,5 @@
 import threading
 
-
 class EmailThread(threading.Thread):
     # overriding constructor
     def __init__(self, email_obj):
