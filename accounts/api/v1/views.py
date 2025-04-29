@@ -13,7 +13,7 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 
-from ...models import User, Profile
+from ...models import Profile
 from .serializers import (
     RegistrationSerializer,
     CustomAuthTokenSerializer,
@@ -24,9 +24,7 @@ from .serializers import (
 )
 from .utils import EmailThread
 
-
 User = get_user_model()
-
 
 class RegisterApiView(generics.GenericAPIView):
 

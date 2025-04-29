@@ -9,11 +9,12 @@ from django.urls import reverse_lazy
 
 # ویوهای ابتدایی حساب کاربری همراه با سفارشی سازی کلاسهای موجود در پکیجهای افزوده شده ضروری
 
+
 class LoginView(LoginVU):
-    
-    ''' استفاده از تمپلتهای موجود در مثال '''
+    """استفاده از تمپلتهای موجود در مثال"""
+
     template_name = "accounts/login.html"
-    fields = "username","password"
+    fields = "username", "password"
     redirect_authenticated_user = True
 
     def get_success_url(self):
@@ -21,7 +22,8 @@ class LoginView(LoginVU):
 
 
 class RegisterView(FormView):
-    ''' استفاده از تمپلتهای موجود در مثال '''
+    """استفاده از تمپلتهای موجود در مثال"""
+
     template_name = "accounts/register.html"
     form_class = UserCreationForm
     redirect_authenticated_user = True

@@ -31,7 +31,4 @@
         #Specifies the server hostname. Used in auto-generated TLS certificate if enabled.
         - ServerOptions__HostName=smtp4dev
   volumes:
-    smtp4dev-data:        
-
-       
-
+    smtp4dev-data:
