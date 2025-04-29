@@ -1,0 +1,20 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Launch Docker Compose 
+      run: docker-compose up -d
+    - name: flake and test execution
+      run: docker exec todobackend sh -c "flake8 && pytest ."

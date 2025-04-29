@@ -12,6 +12,11 @@ django-coreapi
 drf-yasg[validation]
 djangorestframework-simplejwt
 djoser
+django-coreapi
+drf-yasg[validation]
+djangorestframework-simplejwt
+djoser
+drf_spectacular
 
 # development modules
 

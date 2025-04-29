@@ -7,9 +7,12 @@ from rest_framework_simplejwt.views import (
     TokenVerifyView,
 )
 
+
+app_name = 'account_urls'
+
 urlpatterns = [
     # Registration
-    path("registration/", views.RegistrationApiView.as_view(), name="registration"),
+    path("register/", views.RegisterApiView.as_view(), name="register"),
     # path('email-test/', views.EmailTestView.as_view(),name='email-test'),
     # Change password
     path("change-password", views.ChangePasswordView.as_view(), name="change-password"),
