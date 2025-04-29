@@ -25,13 +25,13 @@ class TaskSerializer(serializers.ModelSerializer):
     absolute_url = serializers.SerializerMethodField()
     ''' Custom naming for methods '''
     # absolute_url = serializers.SerializerMethodField(method_name='get_abs_url')
-    
+
     ''' (PUT),(POST) نمایش نام فیلد رابطه دار در زمان ارسال اطلاعات '''
     # category = serializers.SlugRelatedField(many=False, slug_field='name', queryset=Category.objects.all())
-    
+
     ''' نمایش اطلاعات منتخب فیلد رابطه دار صرفاً در بخش نمایش دادهها '''
     # category = CategorySerializer()
-    
+
     class Meta:
         model = Task
         # fields = '__all__'
@@ -42,7 +42,7 @@ class TaskSerializer(serializers.ModelSerializer):
     def get_absolute_url(self,obj):
         request = self.context.get('request')
         return request.build_absolute_uri(obj.pk)
-    
+
     ''' بازنویسی مناسب این تابع برای نمایش مشخصات فیلدهای رابطه دار در بخش نمایش دادهها
        بهمراه امکان استفاده از مشخصه فیلد رابطه دار در فرم ارسال بسیار مفید است  '''
     def to_representation(self, instance):
@@ -73,8 +73,9 @@ from ...models import Task
 #     id = serializers.IntegerField()
 #     task_name = serializers.CharField(max_length=200)
 
+
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         # fields = '__all__'
-        fields = ['id','task_name','completed','created_at','user']
+        fields = ["id", "task_name", "completed", "created_at", "user"]

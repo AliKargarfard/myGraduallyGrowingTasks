@@ -10,15 +10,16 @@ router.register('task',views.TaskModelViewSet,basename='task')
 urlpatterns = router.urls
 """
 
-from django.urls import path, include
+from django.urls import path
+
 # from .views import taskList, taskDetail
 from .views import TaskList, TaskDetail
 
-app_name = 'api-v1'
+app_name = "api-v1"
 
 urlpatterns = [
     # path('task/', taskList, name='task_list'),
     # path('task/<int:id>/', taskDetail, name='task_detail'),
-    path('task/', TaskList.as_view(), name='task_list'),
-    path('task/<int:pk>/', TaskDetail.as_view(), name='task_detail'),
+    path("task/", TaskList.as_view(), name="task_list"),
+    path("task/<int:pk>/", TaskDetail.as_view(), name="task_detail"),
 ]

@@ -1,7 +1,7 @@
-from django.urls import path, include
+from django.urls import path
 from .. import views
 
-app_name = 'profile_urls'
+app_name = "profile_urls"
 
 urlpatterns = [
     # profile

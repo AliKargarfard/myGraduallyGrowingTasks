@@ -1,5 +1,5 @@
 from rest_framework import generics, status
-from ...models import User, Profile
+from ...models import Profile
 from django.shortcuts import get_object_or_404
 from .serializers import (
     RegistrationSerializer,
@@ -17,7 +17,6 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth import get_user_model
 
-from django.contrib.auth import get_user_model
 # from django.core.mail import send_mail
 # from mail_templated import send_mail
 from mail_templated import EmailMessage
@@ -27,7 +26,7 @@ import jwt
 from jwt.exceptions import ExpiredSignatureError, InvalidSignatureError
 from django.conf import settings
 
-User=get_user_model
+User = get_user_model()
 
 
 class RegisterApiView(generics.GenericAPIView):
@@ -80,7 +79,7 @@ class CustomDeleteAuthToken(APIView):
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenOptainPairSerializer
-    
+
 
 class ChangePasswordView(generics.GenericAPIView):
     model = User

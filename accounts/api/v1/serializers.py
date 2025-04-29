@@ -6,9 +6,11 @@ from django.core import exceptions
 from django.contrib.auth import authenticate
 from django.utils.translation import gettext_lazy as _
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
 # from django.contrib.auth import get_user_model
 
 # User = get_user_model
+
 
 class RegistrationSerializer(serializers.ModelSerializer):
     password1 = serializers.CharField(max_length=250, write_only=True)
@@ -80,7 +82,7 @@ class CustomAuthTokenSerializer(serializers.Serializer):
         else:
             msg = _('Must include "username" and "password".')
             raise serializers.ValidationError(msg, code="authorization")
-        print(user,".........................")
+        print(user, ".........................")
         attrs["user"] = user
         return attrs
 
@@ -99,8 +101,8 @@ class CustomTokenOptainPairSerializer(TokenObtainPairSerializer):
         token = super().get_token(user)
 
         # Add custom claims
-        token['email'] = user.email
-        token['user_id'] = user.id
+        token["email"] = user.email
+        token["user_id"] = user.id
         # ...
 
         return token
@@ -110,14 +112,15 @@ class CustomTokenOptainPairSerializer(TokenObtainPairSerializer):
         # refresh = self.get_token(self.user)  # ساخت توکن با فیلدهای سفارشی
         # data['refresh'] = str(refresh)
         # data['access'] = str(refresh.access_token)
-        
+
         # اضافه کردن اطلاعات کاربر به پاسخ
-        data['user_id'] = self.user.id
-        data['email'] = self.user.email
+        data["user_id"] = self.user.id
+        data["email"] = self.user.email
         # data['username'] = self.user.username
         # data['first_name'] = self.user.first_name
         # data['last_name'] = self.user.last_name
         return data
+
 
 class ChangePasswordSerializer(serializers.Serializer):
     old_password = serializers.CharField(required=True)

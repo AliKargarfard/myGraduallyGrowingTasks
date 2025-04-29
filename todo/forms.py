@@ -5,7 +5,7 @@ from .models import Task
 
 
 class TaskUpdateForm(forms.ModelForm):
-    task_name =forms.CharField(
+    task_name = forms.CharField(
         widget=forms.TextInput(
             attrs={
                 "class": "form-control rounded-4",

@@ -1,13 +1,14 @@
-from django.urls import path, include
+from django.urls import path
 from .. import views
-from rest_framework.authtoken.views import obtain_auth_token, ObtainAuthToken
+
+# from rest_framework.authtoken.views import obtain_auth_token, ObtainAuthToken
 from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
+    # TokenObtainPairView,
     TokenRefreshView,
     TokenVerifyView,
 )
 
-app_name = 'account_urls'
+app_name = "account_urls"
 
 urlpatterns = [
     # Registration
