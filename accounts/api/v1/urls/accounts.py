@@ -33,6 +33,6 @@ urlpatterns = [
     path("token/logout/", views.CustomDeleteAuthToken.as_view(), name="token-sign-out"),
     # Login JWT
     path("jwt/create/", views.CustomTokenObtainPairView.as_view(), name="jwt-create"),
-    path("jwt/refresh/", TokenRefreshView.as_view(), name="jwt_refresh"),
-    path("jwt/verify/", TokenVerifyView.as_view(), name="jwt_verify"),
+    path("jwt/refresh/", TokenRefreshView.as_view(), name="jwt-refresh"),
+    path("jwt/verify/", TokenVerifyView.as_view(), name="jwt-verify"),
 ]
