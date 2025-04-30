@@ -182,16 +182,3 @@ class TestAccountsApi:
     #     response_message = (response.data.get("details", "") or response.data.get("detail", "") or response.data.get("error", "")).lower()
     #     print(response_message, '////////////////////////////', response.data)
     #     assert "" in response_message
-
-    # def test_get_account_token_verified(self, api_client, common_user):
-    #     # ساخت یک توکن کاملاً نامعتبر (بدون دستکاری توکن معتبر)
-    #     invalid_token = (
-    #         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c" + "InvalidPart")
-
-    #     activation_url = reverse(
-    #         "accounts:ApiV1:account_urls:jwt-verify")+ f"?token={invalid_token}"
-    #     response = api_client.post(activation_url)
-
-    #     response_message = (response.data.get("details", "") or response.data.get("detail", "") or response.data.get("error", "")).lower()
-    #     print(response_message, '////////////////////////////', response.data)
-    #     assert "Token is invalid" in response_message
