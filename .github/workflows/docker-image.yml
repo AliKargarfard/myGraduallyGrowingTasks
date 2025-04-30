@@ -25,6 +25,6 @@ jobs:
           sudo chmod +x /usr/local/bin/docker-compose
           docker-compose --version  # برای تست نصب    
     - name: Launch Docker Compose 
-      run: docker compose up --build -d
+      run: docker compose up -d
     - name: flake and test execution
       run: docker exec todobackend sh -c "flake8 && pytest ."
