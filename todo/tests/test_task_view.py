@@ -27,12 +27,7 @@ class TestBlogView(TestCase):
         )
 
     def test_todo_list_url_successful_response(self):
-        # login = self.client.force_login(self.user)
-        print(self.user.is_active)  # باید True باشد
-        print(self.user.is_authenticated)  # باید True باشد
-
         self.client.force_login(self.user)
-
         url = reverse("todo:list_tasks")
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
