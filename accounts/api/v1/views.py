@@ -78,7 +78,7 @@ class CustomDeleteAuthToken(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class CustomTokenObtainPairView(TokenObtainPairView):
+class CustomTokenObtainPairView(IsAuthenticated, TokenObtainPairView):
     serializer_class = CustomTokenOptainPairSerializer
 
 
