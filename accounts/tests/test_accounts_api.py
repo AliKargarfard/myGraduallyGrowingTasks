@@ -180,7 +180,7 @@ class TestAccountsApi:
     #     response = api_client.post(activation_url)
 
     #     response_message = (response.data.get("details", "") or response.data.get("detail", "") or response.data.get("error", "")).lower()
-    #     print(response_message, '////////////////////////////', response.data)        
+    #     print(response_message, '////////////////////////////', response.data)
     #     assert "" in response_message
 
     # def test_get_account_token_verified(self, api_client, common_user):
@@ -193,6 +193,5 @@ class TestAccountsApi:
     #     response = api_client.post(activation_url)
 
     #     response_message = (response.data.get("details", "") or response.data.get("detail", "") or response.data.get("error", "")).lower()
-    #     print(response_message, '////////////////////////////', response.data)        
+    #     print(response_message, '////////////////////////////', response.data)
     #     assert "Token is invalid" in response_message
-
