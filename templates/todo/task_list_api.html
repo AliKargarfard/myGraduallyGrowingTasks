@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Task List</h1>
+    <ol id='task-wrapper'>
+      {% comment %} <li>
+        <a href=""><h2></h2></a>
+      </li> {% endcomment %}
+    </ol>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>
+      $.get('/todo/api/v1/task/', function (data, textStatus, jqXHR) {
+        wrapper = $('#task-wrapper');
+        for (task of data.results){
+            wrapper.append(`<li><a href='${task.absolute_url}'><h4>${task.task_name}</h4></a></li>`)
+        }
+        //$('p').append(data.firstName);
+      })
+    </script>
+  </body>
+</html>

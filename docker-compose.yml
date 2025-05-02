@@ -30,6 +30,19 @@
 
         #Specifies the server hostname. Used in auto-generated TLS certificate if enabled.
         - ServerOptions__HostName=smtp4dev
+    master:
+      image: locustio/locust
+      ports:
+      - "8089:8089"
+      volumes:
+        - ./locust:/mnt/locust
+      command: -f /mnt/locust/locustfile.py --master -H http://todobackend:8080
+    
+    worker:
+      image: locustio/locust
+      volumes:
+        - ./locust:/mnt/locust
+      command: -f /mnt/locust/locustfile.py --worker --master-host master
   volumes:
     smtp4dev-data:        
 

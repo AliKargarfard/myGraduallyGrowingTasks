@@ -17,9 +17,12 @@ drf-yasg[validation]
 djangorestframework-simplejwt
 djoser
 drf_spectacular
+django-cors-headers
 
 
 # development modules
+locust
+
 
 # Email third party modules
 django-mail-templated
@@ -29,4 +32,5 @@ black
 flake8
 pytest
 pytest-django
+faker
 
