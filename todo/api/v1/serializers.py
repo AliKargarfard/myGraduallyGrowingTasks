@@ -75,7 +75,38 @@ from ...models import Task
 
 
 class TaskSerializer(serializers.ModelSerializer):
+<<<<<<< Updated upstream
     class Meta:
         model = Task
         # fields = '__all__'
         fields = ["id", "task_name", "completed", "created_at", "user"]
+=======
+
+    relative_url = serializers.URLField(source="get_relative_api_url", read_only=True)
+    absolute_url = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Task
+        # fields = '__all__'
+        fields = [
+            "id",
+            "task_name",
+            "completed",
+            "relative_url",
+            "absolute_url",
+            "created_at",
+            "user",
+        ]
+
+    def get_absolute_url(self, task):
+        request = self.context.get("request")
+        return request.build_absolute_uri(task.pk)
+
+    def to_representation(self, instance):
+        request = self.context.get("request")
+        representation_data = super().to_representation(instance)
+        if request.parser_context.get("kwargs").get("pk"):
+            representation_data.pop("absolute_url", None)
+            representation_data.pop("relative_url", None)
+        return representation_data
+>>>>>>> Stashed changes

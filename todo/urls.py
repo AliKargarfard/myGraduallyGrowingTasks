@@ -13,6 +13,10 @@ app_name = "todo"
 
 urlpatterns = [
     path("todo/", ListTask.as_view(), name="list_tasks"),
+<<<<<<< Updated upstream
+=======
+    path("todo/api/", ListTaskApi.as_view(), name="list_tasks"),
+>>>>>>> Stashed changes
     path("todo/<int:pk>", TaskDetailView.as_view(), name="task_detail"),
     path("create/", CreateTask.as_view(), name="create_task"),
     path("delete/<int:pk>/", DeleteTaskView.as_view(), name="delete_task"),
