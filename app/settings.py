@@ -25,7 +25,8 @@ SECRET_KEY = "django-insecure-58ws-6l_&-zjcx*^@t@a7(i8yc#2krib5ak=lod)f$@%seorfa
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -165,8 +166,18 @@ EMAIL_PORT = 25
 EMAIL_HOST_USER = ""
 EMAIL_HOST_PASSWORD = ""
 
+# CORS settings
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8080",
+    "http://127.0.0.1:5500",
+]
+
+# Celery settings
+CELERY_BROKER_URL = "redis://redis:6379/1"
+
 #
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",
     "http://127.0.0.1:5500",
 ]
+

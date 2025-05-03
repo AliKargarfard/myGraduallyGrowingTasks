@@ -165,3 +165,20 @@ class TestAccountsApi:
         )  # یا کد دیگری که برای توکن منقضی‌شده تعیین کرده‌اید
         assert "token has been expired" in error_message
 
+    # def test_get_account_token_verified(self, api_client, common_user):
+    #     url = reverse("accounts:ApiV1:account_urls:jwt-create")
+    #     api_client.force_authenticate(user=common_user)
+    #     data = {
+    #         "email": "ali@abc.com",
+    #         "password": "ali@1234",
+    #     }
+    #     response = api_client.post(url, data)
+
+    #     access_token = response.data["access"]
+    #     activation_url = reverse(
+    #         "accounts:ApiV1:account_urls:jwt-verify")+ f"?token={access_token}"
+    #     response = api_client.post(activation_url)
+
+    #     response_message = (response.data.get("details", "") or response.data.get("detail", "") or response.data.get("error", "")).lower()
+    #     print(response_message, '////////////////////////////', response.data)
+    #     assert "" in response_message

@@ -5,6 +5,10 @@ from django.contrib.auth.views import LoginView as LoginVU
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 
+from django.http import HttpResponse
+import time
+from .tasks import send_email
+
 # Create your views here.
 
 # ویوهای ابتدایی حساب کاربری همراه با سفارشی سازی کلاسهای موجود در پکیجهای افزوده شده ضروری
@@ -39,3 +43,8 @@ class RegisterView(FormView):
         if self.request.user.is_authenticated:
             return redirect("list_tasks")
         return super(RegisterPage, self).get(*args, **kwargs)
+
+
+def sendEmail(request):
+    send_email.delay()
+    return HttpResponse("<h1>Sending Done...</h1>")
