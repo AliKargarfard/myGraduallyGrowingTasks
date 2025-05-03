@@ -24,7 +24,7 @@ class Command(BaseCommand):
             is_active=True,
             is_staff=random.choice([True, False]),
             is_verified=random.choice([True, False]),
-        )
+
         profile = Profile.objects.get(user=user)
         profile.first_name = self.faker.first_name()
         profile.last_name = self.faker.last_name()

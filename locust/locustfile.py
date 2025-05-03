@@ -7,3 +7,4 @@ class QuickstartUser(HttpUser):
     @task
     def task_list(self):
         self.client.get("/todo/api/v1/task/")
+

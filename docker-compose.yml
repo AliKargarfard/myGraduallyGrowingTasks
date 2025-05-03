@@ -47,8 +47,7 @@
 
         #Specifies the server hostname. Used in auto-generated TLS certificate if enabled.
         - ServerOptions__HostName=smtp4dev
-<<<<<<< Updated upstream
-=======
+
     # master:
     #   image: locustio/locust
     #   ports:
@@ -62,7 +61,7 @@
     #   volumes:
     #     - ./locust:/mnt/locust
     #   command: -f /mnt/locust/locustfile.py --worker --master-host master
->>>>>>> Stashed changes
+
   volumes:
     smtp4dev-data:        
 

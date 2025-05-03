@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth import get_user_model
 
 # Create your models here.
@@ -21,9 +22,7 @@ class Task(models.Model):
 
     def __str__(self):
         return self.task_name
-<<<<<<< Updated upstream
-=======
 
     def get_relative_api_url(self):
         return reverse("todo:api-v1:task_detail", kwargs={"pk": self.id})
->>>>>>> Stashed changes
+

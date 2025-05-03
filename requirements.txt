@@ -13,9 +13,12 @@ djangorestframework-simplejwt
 djoser
 django-coreapi
 drf_spectacular
+django-cors-headers
 
 
 # development modules
+locust
+
 
 # Email third party modules
 django-mail-templated
@@ -25,6 +28,7 @@ black
 flake8
 pytest
 pytest-django
+faker
 
 # background process and cache
 celery==5.3.6
