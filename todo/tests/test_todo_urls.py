@@ -8,5 +8,5 @@ from todo.views import ListTask
 class TestUrls(SimpleTestCase):
 
     def test_todo_list_url_resolve(self):
-        url = reverse("todo:list_tasks")
+        url = reverse("todo:task_list")
         self.assertEquals(resolve(url).func.view_class, ListTask)
