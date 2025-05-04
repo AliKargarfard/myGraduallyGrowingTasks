@@ -34,3 +34,7 @@ pytest
 pytest-django
 faker
 
+# background process and cache
+celery==5.3.6
+redis==4.6.0
+django-celery-beat

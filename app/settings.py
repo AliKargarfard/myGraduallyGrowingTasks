@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "drf_yasg",
     "mail_templated",
     "corsheaders",
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -170,3 +171,9 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",
     "http://127.0.0.1:5500",
 ]
+
+# Celery settings
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+CELERY_BROKER_URL = 'redis://redis:6379/1'  
+CELERY_RESULT_BACKEND = 'redis://redis:6379/1'
+CELERY_TIMEZONE = 'Asia/Tehran'  # تنظیم منطقه زمانی
