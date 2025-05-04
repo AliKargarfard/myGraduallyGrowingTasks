@@ -24,4 +24,4 @@ class Task(models.Model):
         return self.task_name
 
     def get_relative_api_url(self):
-        return reverse('todo:api-v1:task_detail', kwargs={'pk': self.id})
+        return reverse("todo:api-v1:task_detail", kwargs={"pk": self.id})
