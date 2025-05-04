@@ -16,7 +16,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        # generate user and fill his profile (in necessity uncomment statements) 
+        # generate user and fill his profile (in necessity uncomment statements)
 
         user = User.objects.create_user(
             email=self.faker.email(),
@@ -24,7 +24,7 @@ class Command(BaseCommand):
             is_active=True,
             is_staff=random.choice([True, False]),
             is_verified=random.choice([True, False]),
-            )
+        )
         profile = Profile.objects.get(user=user)
         profile.first_name = self.faker.first_name()
         profile.last_name = self.faker.last_name()
