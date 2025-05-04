@@ -31,7 +31,6 @@ class TestBlogView(TestCase):
         url = reverse("todo:task_list")
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        print(response.content,'*********************')
         self.assertTrue(str(response.content).find("todo"))
         self.assertTemplateUsed(response, template_name="todo/list_tasks.html")
 
