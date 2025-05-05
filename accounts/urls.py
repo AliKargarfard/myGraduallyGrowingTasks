@@ -1,4 +1,5 @@
 from django.urls import path, include
+from . import views
 
 # from django.contrib.auth.views import LogoutView
 # from .views import LoginView, RegisterView
@@ -11,4 +12,6 @@ urlpatterns = [
     # path("register/", RegisterView.as_view(), name="register"),
     path("", include("django.contrib.auth.urls")),
     path("api/v1/", include("accounts.api.v1.urls")),
+    path("send-email/", views.sendEmail, name="send-email"),
+    path("test/", views.test, name="send-email"),    
 ]
