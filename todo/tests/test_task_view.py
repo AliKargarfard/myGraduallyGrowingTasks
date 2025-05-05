@@ -28,10 +28,10 @@ class TestBlogView(TestCase):
 
     def test_todo_list_url_successful_response(self):
         self.client.force_login(self.user)
-        url = reverse("todo:list_tasks")
+        url = reverse("todo:task_list")
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertTrue(str(response.content).find("Todo"))
+        self.assertTrue(str(response.content).find("todo"))
         self.assertTemplateUsed(response, template_name="todo/list_tasks.html")
 
     def test_todo_task_detail_logged_in_response(self):

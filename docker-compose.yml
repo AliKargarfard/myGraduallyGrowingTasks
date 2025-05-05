@@ -1,5 +1,11 @@
-
   services:
+    redis:
+      container_name: redis
+      image: redis
+      restart: always
+      ports:
+        - "6379:6379"
+      command: redis-server --save 60 1 --loglevel warning
     todobackend:
       build: .
       container_name: todobackend
@@ -11,6 +17,16 @@
       environment:
         - SECRET_KEY=test
         - DEBUG=True
+      depends_on:
+        - redis
+    worker:
+      build: .
+      command: celery -A app worker --loglevel=info
+      volumes:
+        - ./:/app
+      depends_on:
+        - redis
+        - todobackend
     smtp4dev:
       image: rnwood/smtp4dev:v3
       restart: always
@@ -30,21 +46,18 @@
 
         #Specifies the server hostname. Used in auto-generated TLS certificate if enabled.
         - ServerOptions__HostName=smtp4dev
-    master:
-      image: locustio/locust
-      ports:
-      - "8089:8089"
-      volumes:
-        - ./locust:/mnt/locust
-      command: -f /mnt/locust/locustfile.py --master -H http://todobackend:8080
+    # master:
+    #   image: locustio/locust
+    #   ports:
+    #   - "8089:8089"
+    #   volumes:
+    #     - ./locust:/mnt/locust
+    #   command: -f /mnt/locust/locustfile.py --master -H http://todobackend:8080
     
-    worker:
-      image: locustio/locust
-      volumes:
-        - ./locust:/mnt/locust
-      command: -f /mnt/locust/locustfile.py --worker --master-host master
+    # worker:
+    #   image: locustio/locust
+    #   volumes:
+    #     - ./locust:/mnt/locust
+    #   command: -f /mnt/locust/locustfile.py --worker --master-host master
   volumes:
-    smtp4dev-data:        
-
-       
-
+    smtp4dev-data: 
