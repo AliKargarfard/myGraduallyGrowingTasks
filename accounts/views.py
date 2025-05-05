@@ -7,7 +7,7 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.core.cache import cache
 from django.http import HttpResponse, JsonResponse
-import time, requests
+import requests
 from .tasks import send_email
 
 # Create your views here.
@@ -58,7 +58,10 @@ def sendEmail(request):
 #         cache.set('datetime_number', response.json())
 #     return JsonResponse(cache.get('datetime_number'))
 
+
 """ Manage cache automatically """
+
+
 @cache_page(60)
 def test(request):
     response = requests.get("https://b711ba10-97b4-4e9f-ba2c-f72d26c872f8.mock.pstmn.io//trst/datetime-number")
