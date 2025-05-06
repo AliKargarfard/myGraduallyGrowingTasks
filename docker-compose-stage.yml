@@ -1,0 +1,45 @@
+  services:
+    redis:
+      container_name: redis
+      image: redis
+      restart: always
+      ports:
+        - "6379:6379"
+      command: redis-server --save 60 1 --loglevel warning
+    todobackend:
+      build: .
+      container_name: todobackend
+      command: python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic --noinput && gunicorn app.wsgi --bind 0.0.0.0:8080
+      volumes:
+        - ./:/app
+      ports:
+        - "8080:8080"
+      environment:
+        - SECRET_KEY=test
+        - DEBUG=False
+      depends_on:
+        - redis
+    worker:
+      build: .
+      command: celery -A app worker --loglevel=info
+      volumes:
+        - ./:/app
+      depends_on:
+        - redis
+        - todobackend
+    
+    # master:
+    #   image: locustio/locust
+    #   ports:
+    #   - "8089:8089"
+    #   volumes:
+    #     - ./locust:/mnt/locust
+    #   command: -f /mnt/locust/locustfile.py --master -H http://todobackend:8080
+    
+    # worker:
+    #   image: locustio/locust
+    #   volumes:
+    #     - ./locust:/mnt/locust
+    #   command: -f /mnt/locust/locustfile.py --worker --master-host master
+  volumes:
+    smtp4dev-data: 

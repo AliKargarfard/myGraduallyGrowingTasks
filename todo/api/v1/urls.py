@@ -13,7 +13,7 @@ urlpatterns = router.urls
 from django.urls import path
 
 # from .views import taskList, taskDetail
-from .views import TaskList, TaskDetail
+from .views import TaskList, TaskDetail, WeatherConditionApi
 
 app_name = "api-v1"
 
@@ -22,4 +22,5 @@ urlpatterns = [
     # path('task/<int:id>/', taskDetail, name='task_detail'),
     path("task/", TaskList.as_view(), name="task_list"),
     path("task/<int:pk>/", TaskDetail.as_view(), name="task_detail"),
+    path("weather-conditions/<str:city>/", WeatherConditionApi.as_view(), name="weather-conditions"),   
 ]
