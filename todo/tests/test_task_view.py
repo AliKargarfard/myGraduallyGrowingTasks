@@ -32,7 +32,7 @@ class TestBlogView(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertTrue(str(response.content).find("todo"))
-        self.assertTemplateUsed(response, template_name="todo/list_tasks.html")
+        self.assertTemplateUsed(response, template_name="todo/task_list.html")
 
     def test_todo_task_detail_logged_in_response(self):
         self.client.force_login(self.user)

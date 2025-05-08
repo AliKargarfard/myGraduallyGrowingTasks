@@ -20,6 +20,6 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'delete-completed-tasks-every-10-minutes': {
         'task': 'todo.tasks.delete_completed_tasks',
-        'schedule': crontab(minute='*/5'),  # هر ۱۰ دقیقه
+        'schedule': crontab(minute='*/10'),  # هر ۱۰ دقیقه
     },
 }

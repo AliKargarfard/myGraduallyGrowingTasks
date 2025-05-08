@@ -18,11 +18,11 @@ djangorestframework-simplejwt
 djoser
 drf_spectacular
 django-cors-headers
-
+psycopg2-binary
 
 # development modules
 locust
-
+gunicorn
 
 # Email third party modules
 django-mail-templated
