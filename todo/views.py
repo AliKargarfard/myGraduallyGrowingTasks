@@ -12,7 +12,7 @@ from .forms import TaskUpdateForm
 class ListTask(LoginRequiredMixin, ListView):
     model = Task
     context_object_name = "tasks"
-    template_name = "todo/list_tasks.html"
+    template_name = "todo/task_list.html"
 
     def get_queryset(self):
         print(self.request.__dict__, "****************")
@@ -31,7 +31,7 @@ class TaskDetailView(DetailView):
 class CreateTask(LoginRequiredMixin, CreateView):
     model = Task
     fields = ["task_name"]
-    success_url = reverse_lazy("todo:list_tasks")
+    success_url = reverse_lazy("todo:task_list")
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -41,7 +41,7 @@ class CreateTask(LoginRequiredMixin, CreateView):
 
 class UpdateTask(LoginRequiredMixin, UpdateView):
     model = Task
-    success_url = reverse_lazy("todo:list_tasks")
+    success_url = reverse_lazy("todo:task_list")
     form_class = TaskUpdateForm
     template_name = "todo/update_task.html"
 
@@ -51,7 +51,7 @@ class UpdateTask(LoginRequiredMixin, UpdateView):
 
 class CompletedTask(LoginRequiredMixin, View):
     model = Task
-    success_url = reverse_lazy("todo:list_tasks")
+    success_url = reverse_lazy("todo:task_list")
 
     def get(self, request, *args, **kwargs):
         object = Task.objects.get(id=kwargs.get("pk"))
@@ -65,7 +65,7 @@ class CompletedTask(LoginRequiredMixin, View):
 
 class UnCompletedTask(LoginRequiredMixin, View):
     model = Task
-    success_url = reverse_lazy("todo:list_tasks")
+    success_url = reverse_lazy("todo:task_list")
 
     def get(self, request, *args, **kwargs):
         object = Task.objects.get(id=kwargs.get("pk"))
@@ -77,7 +77,7 @@ class UnCompletedTask(LoginRequiredMixin, View):
 class DeleteTaskView(LoginRequiredMixin, DeleteView):
     model = Task
     context_object_name = "task_name"
-    success_url = reverse_lazy("todo:list_tasks")
+    success_url = reverse_lazy("todo:task_list")
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)

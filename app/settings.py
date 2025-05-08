@@ -191,6 +191,7 @@ DATABASES = {
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 CELERY_BROKER_URL = 'redis://redis:6379/1'  
 CELERY_RESULT_BACKEND = 'redis://redis:6379/1'
+CELERY_IMPORTS = ['todo.tasks']
 CELERY_TIMEZONE = 'Asia/Tehran'  # تنظیم منطقه زمانی
 
 # caching settings
