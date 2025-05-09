@@ -95,16 +95,6 @@ TEMPLATES = [
 WSGI_APPLICATION = "app.wsgi.application"
 
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -181,8 +171,8 @@ DATABASES = {
         'NAME': os.getenv('POSTGRES_DB', 'tododb'),
         'USER': os.getenv('POSTGRES_USER', 'todouser'),
         'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'todopass'),
-        'HOST': os.getenv('POSTGRES_HOST', 'postgres'),
-        'PORT': os.getenv('POSTGRES_PORT', '5432'),
+        'HOST': 'postgres',
+        'PORT': '5432',
     }
 }
 

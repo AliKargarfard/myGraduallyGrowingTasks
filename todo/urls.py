@@ -14,6 +14,7 @@ app_name = "todo"
 
 urlpatterns = [
     path("todo/", ListTask.as_view(), name="task_list"),
+    # Test for api access from outside
     path("todo/api/", ListTaskApi.as_view(), name="task_list_api"),
     path("todo/<int:pk>", TaskDetailView.as_view(), name="task_detail"),
     path("create/", CreateTask.as_view(), name="create_task"),

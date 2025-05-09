@@ -1,4 +1,5 @@
 from django.shortcuts import redirect
+from django.http import JsonResponse
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView, TemplateView
@@ -7,6 +8,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from .models import Task
 from .forms import TaskUpdateForm
+
+
+def health_check(request):
+    return JsonResponse({'status': 'ok'}, status=200)
 
 
 class ListTask(LoginRequiredMixin, ListView):
