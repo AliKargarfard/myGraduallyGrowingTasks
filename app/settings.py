@@ -171,8 +171,8 @@ DATABASES = {
         'NAME': os.getenv('POSTGRES_DB', 'tododb'),
         'USER': os.getenv('POSTGRES_USER', 'todouser'),
         'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'todopass'),
-        'HOST': 'postgres',
-        'PORT': '5432',
+        'HOST': os.environ.get('POSTGRES_HOST', 'postgres'),
+        'PORT': os.environ.get('POSTGRES_PORT', 5432),
     }
 }
 

@@ -42,6 +42,10 @@ class TaskModelViewSet(viewsets.ModelViewSet):
 # from rest_framework.decorators import api_view, permission_classes
 # from rest_framework.views import APIView
 # from rest_framework.response import Response
+from django.core.cache import cache
+from rest_framework.views import APIView
+from rest_framework.response import Response
+import requests
 from rest_framework.permissions import (
     # IsAuthenticated,
     # IsAdminUser,
@@ -157,3 +161,26 @@ class TaskDetail(RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = TaskSerializer
     queryset = Task.objects.all()
+
+
+class WeatherConditionApi(APIView):
+
+    def get(self, request, *args, **kwargs):
+        city = kwargs['city']
+        api_key = "71282808720f6a05d3374d744c9baea6"  # کلید API
+
+        """ ذخیره کلید API در متغیرهای محیطی (Environment Variables) برای امنیت بیشتر:
+        import os
+        api_key = os.getenv("OPENWEATHER_API_KEY")
+        """
+        url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&APPID={api_key}"
+
+        # create special key for every requested city
+        cache_key = f"City_{city}"
+        data = cache.get(cache_key)
+        if not data:
+            data = requests.get(url).json()
+            if data.get("status_code") != 404:   # در صورتیکه شهر مورد نظر یافته نشود == 404 کش نمیشود
+                cache.set(cache_key, data, timeout=60 * 20)  # 20 دقیقه
+        data['name'] = f"{data['name']} :اطلاعات آب و هوایی شهر"
+        return Response(data)
