@@ -22,5 +22,5 @@ urlpatterns = [
     # path('task/<int:id>/', taskDetail, name='task_detail'),
     path("task/", TaskList.as_view(), name="task_list"),
     path("task/<int:pk>/", TaskDetail.as_view(), name="task_detail"),
-    path("weather-conditions/<str:city>/", WeatherConditionApi.as_view(), name="weather-conditions"),      
+    path("weather-conditions/<str:city>/", WeatherConditionApi.as_view(), name="weather-conditions"),
 ]

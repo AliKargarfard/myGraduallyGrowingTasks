@@ -156,10 +156,12 @@ class TaskList(ListCreateAPIView):
     serializer_class = TaskSerializer
     queryset = Task.objects.all()
 
+
 class TaskDetail(RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = TaskSerializer
     queryset = Task.objects.all()
+
 
 class WeatherConditionApi(APIView):
 
@@ -180,5 +182,5 @@ class WeatherConditionApi(APIView):
             data = requests.get(url).json()
             if data.get("status_code") != 404:   # در صورتیکه شهر مورد نظر یافته نشود == 404 کش نمیشود
                 cache.set(cache_key, data, timeout=60 * 20)  # 20 دقیقه
-        data['name']= f"{data['name']} :اطلاعات آب و هوایی شهر"
+        data['name'] = f"{data['name']} :اطلاعات آب و هوایی شهر"
         return Response(data)
