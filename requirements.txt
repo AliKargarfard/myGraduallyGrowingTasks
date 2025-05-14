@@ -10,11 +10,6 @@ markdown
 django-filter  
 django-coreapi
 drf-yasg[validation]
-djangorestframework-simplejwt
-djoser
-django-coreapi
-drf-yasg[validation]
-djangorestframework-simplejwt
 djoser
 drf_spectacular
 django-cors-headers
